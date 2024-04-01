@@ -10,7 +10,7 @@ export default function Home() {
     { id: "4", src: "/simple-assets/images/4.png", alt: "Image 4" },
   ];
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="">
       <Header />
       <Carousel images={images} />
     </main>

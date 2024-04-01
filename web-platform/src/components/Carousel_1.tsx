@@ -30,7 +30,7 @@ export default function Carousel({
   };
 
   return (
-    <div className="relative">
+    <div className="relative mt-5">
       <AiOutlineLeft
         onClick={handlePrevSlide}
         className="absolute left-0 m-auto text-5xl inset-y-1/2 cursor-pointer text-gray-400 z-20"
