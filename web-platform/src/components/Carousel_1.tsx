@@ -30,17 +30,17 @@ export default function Carousel({
   };
 
   return (
-    <div className="relative mt-5">
+    <div className="relative mt-8 w-full h-[106.667vh] ">
       <AiOutlineLeft
         onClick={handlePrevSlide}
         className="absolute left-0 m-auto text-5xl inset-y-1/2 cursor-pointer text-gray-400 z-20"
         aria-label="Previous slide"
       />
-      <Swipe
+      {/* <Swipe
         onSwipeLeft={handleNextSlide}
         onSwipeRight={handlePrevSlide}
-        className="w-full h-[50vh] flex overflow-hidden relative m-auto"
-      >
+        className="w-full h-[106.667vh] flex overflow-hidden relative m-auto"
+      > */}
         {images.map((image, index) => (
           <div
             key={image.id}
@@ -53,12 +53,13 @@ export default function Carousel({
                 src={image.src}
                 alt={image.alt}
                 layout="fill"
-                objectFit="contain"
+                objectFit="cover"
+                className="mb-8"
               />
             )}
           </div>
         ))}
-      </Swipe>
+      {/* </Swipe> */}
       <AiOutlineRight
         onClick={handleNextSlide}
         className="absolute right-0 m-auto text-5xl inset-y-1/2 cursor-pointer text-gray-400 z-20"
