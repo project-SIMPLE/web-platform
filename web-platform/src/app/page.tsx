@@ -1,7 +1,7 @@
 "use client";
-import Image from "next/image";
 import Header from "../components/header";
 import Carousel from "../components/Carousel_1";
+import GetPlayer from "@/Domain/UseCase/Player/GetPlayer";
 export default function Home() {
   const images = [
     { id: "1", src: "/simple-assets/images/1.png", alt: "Image 1" },
@@ -13,6 +13,10 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <Header />
       <Carousel images={images} />
+      {/* Example d'utilisation de GetPlayer pour afficher les players de la Waiting Game */}
+      <div className="">
+        <GetPlayer />
+      </div>
     </main>
   );
 }

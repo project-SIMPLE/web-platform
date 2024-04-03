@@ -30,35 +30,35 @@ export default function Carousel({
   };
 
   return (
-    <div className="relative">
+    <div className="relative mt-8 w-full h-[106.667vh]">
       <AiOutlineLeft
         onClick={handlePrevSlide}
         className="absolute left-0 m-auto text-5xl inset-y-1/2 cursor-pointer text-gray-400 z-20"
         aria-label="Previous slide"
       />
-      <Swipe
+      {/* <Swipe
         onSwipeLeft={handleNextSlide}
         onSwipeRight={handlePrevSlide}
         className="w-full h-[50vh] flex overflow-hidden relative m-auto"
-      >
-        {images.map((image, index) => (
-          <div
-            key={image.id}
-            className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
-              index === currentSlide ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            {index === currentSlide && (
-              <Image
-                src={image.src}
-                alt={image.alt}
-                layout="fill"
-                objectFit="contain"
-              />
-            )}
-          </div>
-        ))}
-      </Swipe>
+      > */}
+      {images.map((image, index) => (
+        <div
+          key={image.id}
+          className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${
+            index === currentSlide ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          {index === currentSlide && (
+            <Image
+              src={image.src}
+              alt={image.alt}
+              layout="fill"
+              objectFit="contain"
+            />
+          )}
+        </div>
+      ))}
+      {/* </Swipe> */}
       <AiOutlineRight
         onClick={handleNextSlide}
         className="absolute right-0 m-auto text-5xl inset-y-1/2 cursor-pointer text-gray-400 z-20"

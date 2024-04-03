@@ -3,9 +3,13 @@ export default function Header() {
     <header className="w-full bg-gray-900 sm:flex sm:justify-between sm:items-center sm:px-4 sm:py-3">
       <div className="flex items-center justify-between px-4 py-3 sm:p-0">
         <div>
-          <img className="h-8" src="/vercel.svg" alt="Workcation" />
+          <img
+            className="h-8"
+            src="/simple-assets/logo/SIMPLE_Logo_Complet_Sticker.png"
+            alt="Workcation"
+          />
         </div>
-        <div>
+        {/* <div>
           <button
             type="button"
             className="block text-gray-500 hover:text-white focus:text-white focus:outline-none"
@@ -21,10 +25,10 @@ export default function Header() {
               />
             </svg>
           </button>
-        </div>
+        </div> */}
       </div>
       <nav className="px-2 pt-2 pb-4 sm:flex sm:p-0">
-        {/* <a
+        <a
           href="#"
           className="block px-2 py-1 text-white font-semibold rounded hover:bg-gray-800"
         >
@@ -41,7 +45,7 @@ export default function Header() {
           className="mt-1 block px-2 py-1 text-white font-semibold rounded hover:bg-gray-800 sm:mt-0 sm:ml-2"
         >
           Messages
-        </a> */}
+        </a>
       </nav>
     </header>
   );
