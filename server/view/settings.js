@@ -1,7 +1,7 @@
-// const hostname = window.location.hostname;
+const hostname = window.location.hostname;
 
-const os = require('os');
-const hostname = os.hostname();
+// const os = require('os');
+// const hostname = os.hostname();
 
 document.addEventListener("DOMContentLoaded", function() {
 

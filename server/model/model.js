@@ -15,10 +15,11 @@ class Model {
             loading:false,
             content_error:"",
             experiment_id:"",
-            experiment_name:""
+            experiment_name:"" 
         }
         this.json_players = {}
         this.json_settings = JSON.parse(fs.readFileSync('settings.json', 'utf-8'));
+        // console.log(this.json_settings);
     }
 
     // Getter all
