@@ -27,19 +27,19 @@ class App {
         });
 
         this.app.get('/monitor', (req, res) => {
-          res.sendFile('monitor.html', { root: 'views/monitor' });
+          res.sendFile('monitor.html', { root: 'views/' });
         });
         
         this.app.get('/settings', (req, res) => {
-          res.sendFile('settings.html', { root: 'views/settings' });
+          res.sendFile('settings.html', { root: 'views/' });
         });
         
         this.app.get('/player', (req, res) => {
           if (this.controller.model.getJsonSettings().player_web_interface){
-            res.sendFile(this.controller.model.getJsonSettings().player_html_file, { root: 'views/player' });
+            res.sendFile(this.controller.model.getJsonSettings().player_html_file, { root: 'views/' });
           }
           else {
-            res.status(404).sendFile('404_player.html', { root: 'views/public' });
+            res.status(404).sendFile('404_player.html', { root: 'views/' });
           }
         });
       
@@ -52,7 +52,7 @@ class App {
         });
         
         this.app.get('/favicon.ico', (req, res) => {
-          res.sendFile('favicon.ico', { root: 'views/public' });
+          res.sendFile('favicon.ico', { root: 'views/' });
         });
 
         this.app.get('/help', (req, res) => {
@@ -60,7 +60,7 @@ class App {
         });
 
         this.app.use((req, res) => {
-          res.status(404).sendFile('404_common.html', { root: 'views/public' });
+          res.status(404).sendFile('404_common.html', { root: 'views/' });
         });
 
         this.server = this.app.listen(this.app_port, () => {
