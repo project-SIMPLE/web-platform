@@ -26,9 +26,12 @@ class App {
           res.redirect('/monitor');
         });
 
+        // this.app.get('/monitor', (req, res) => {
+        //   res.sendFile('monitor.html', { root: 'views/' });
+        // });
         this.app.get('/monitor', (req, res) => {
-          res.sendFile('monitor.html', { root: 'views/' });
-        });
+            res.sendFile('monitor.html', { root: 'views/' });
+          });
         
         this.app.get('/settings', (req, res) => {
           res.sendFile('settings.html', { root: 'views/' });

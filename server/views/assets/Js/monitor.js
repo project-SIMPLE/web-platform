@@ -10,7 +10,7 @@ fetch('/getWsMonitorPort')
         createWebSocket(data.monitor_ws_port)
       });
 
-function createWebSocket(monitor_ws_port) {
+function createWebSocket(monitor_ws_port) { 
     const socket = new WebSocket('ws://'+hostname+':'+monitor_ws_port);
 
     socket.onopen = function() {

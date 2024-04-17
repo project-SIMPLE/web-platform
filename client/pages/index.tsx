@@ -4,14 +4,21 @@ export default function Index() {
   const [message, setMessage] = useState("Loading");
   const [people, setPeople] = useState([]);
 
+  // useEffect(() => {
+  //   fetch("http://localhost:8080/api/home")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       setMessage(data.message); // set message to the response from the server
+  //       setPeople(data.people); // set people to the response from the server
+  //     });
+  // }, []);
+
+
   useEffect(() => {
-    fetch("http://localhost:8080/api/home")
+    fetch("http://localhost:8080/api/monitor")
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setMessage(data.message); // set message to the response from the server
-        setPeople(data.people); // set people to the response from the server
-      });
+      
   }, []);
 
   return (
