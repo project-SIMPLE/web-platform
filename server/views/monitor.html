@@ -7,7 +7,6 @@
     <!-- Add the file from server/views/assets/bootstrap/css/bootstrap.min.css  -->
     <link rel="stylesheet" type="text/css" href="./assets/bootstrap/css/bootstrap.min.css">
     <!-- Add the file from server/views/assets/css/custom-carousel.css  -->
-    <link rel="stylesheet" type="text/css" href="./assets/css/custom-carousel.css">
 </head>
 <body>
     <div class="container-fluid">
@@ -22,19 +21,26 @@
                     </video>
                 </div>
 
-                <div class="video-controls border boder-1">
-                    <button type="button" class="btn btn-primary" id="play">
+                <div class="video-controls mt-2">
+                    <button type="button" class="btn btn-outline-primary" id="start-simulation">
                         <img src="./assets/icons/play-solid.svg" width="20px" height="20px" alt="Start Icon">
+                    Launch 
                     </button>
-                    <button type="button" class="btn btn-secondary" id="pause">
+                    <button type="button" class="btn btn-outline-dark" id="resume-simulation">
+                        Start/Resume
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary" id="stop-simulation" >
                         <img src="./assets/icons/stop-solid.svg" width="20px" height="20px" alt="Stop Icon">
+                    Pause 
                     </button>
-                    <button type="button" class="btn btn-warning" id="restart">
+                    <button type="button" class="btn btn-outline-warning" id="restart">
                         <img src="./assets/icons/restart.svg" width="20px" height="20px" alt="Restart Icon">
                     </button>
-                    <button type="button" class="btn btn-danger" id="project">
+                    <button type="button" class="btn btn-outline-danger" id="project">
                         <img src="./assets/icons/projector.png" width="20px" height="20px" alt="Project Icon">
                     </button>
+
+                    <p id="gama-loader"></p>
                 </div>
             </div>
 

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gama Server Middleware</title>
+    <link rel="stylesheet" type="text/css" href="monitor.css">
+    <!-- Add the file from server/views/assets/bootstrap/css/bootstrap.min.css  -->
+    <link rel="stylesheet" type="text/css" href="./assets/bootstrap/css/bootstrap.min.css">
+
+</head>
+
+<body class="container-fluid">
+ 
+
+    <nav class="navbar">
+        <!-- <ul class="nav-list">
+            <li class="nav-item"><a href="/monitor">Monitor</a></li>
+            <li class="nav-item"><a href="/settings">Settings</a></li>
+            <li class="nav-item"><a href="/help">Help</a></li>
+
+        </ul>
+    </nav> -->
+
+    <p id="connection-state" style="display:none;"></p>
+
+    <div class="container-fluid"> 
+
+        <div class="row mb-3">
+            <h2 class="with-bar">Gama Server</h2>
+            
+            <button class="default-button" id="try-connection">Try Connection</button>
+            <p id="gama-connection-state">&#x274C; Not Connected</p>
+            <p id="simulation-launched">&#x274C; The Simulation is Not Launched</p>
+        </div>
+        <div class="row">
+
+            <!-- FILEPATH: /Users/m2l2/github.com/web-platform/server/views/game_page.html -->
+            <!-- This code snippet displays a video player with controls. The video source is set to "./assets/video/Multi-player GAMA.mov" and the video is set to preload and autoplay. -->
+            <div class="col-md-8">
+                <div class="">
+                    <video class="img-fluid" preload autoplay>
+                        <source src="./assets/video/Multi-player GAMA.mov" type="video/quicktime">
+                    </video>
+                </div>
+
+                <div class="video-controls border boder-1">
+                    <button type="button" class="btn btn-primary" id="start-simulation">
+                        <img src="./assets/icons/play-solid.svg" width="20px" height="20px" alt="Start Icon">
+                    Launch 
+                    </button>
+                    <button type="button" class="btn btn-dark" id="resume-simulation">
+                        Start/Resume
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="stop-simulation" >
+                        <img src="./assets/icons/stop-solid.svg" width="20px" height="20px" alt="Stop Icon">
+                    Pause 
+                    </button>
+                    <button type="button" class="btn btn-warning" id="restart">
+                        <img src="./assets/icons/restart.svg" width="20px" height="20px" alt="Restart Icon">
+                    </button>
+                    <button type="button" class="btn btn-danger" id="project">
+                        <img src="./assets/icons/projector.png" width="20px" height="20px" alt="Project Icon">
+                    </button>
+
+                    <p id="gama-loader"></p>
+                </div>
+            <p><a id="content-error"></a></p>
+
+</div>
+</div>
+</div>
+
+    <div class="sections">
+        
+        <div class="gama-section">
+            
+            
+            <!-- <div id="simulation-controls">
+                <button class="default-button" id="start-simulation">Launch</button>
+                <button class="default-button" id="resume-simulation">Start/Resume</button>
+                <button class="default-button" id="pause-simulation">Pause</button>
+                <button class="default-button" id="stop-simulation">End</button>
+                
+                <p id="gama-loader"></p>
+            </div> -->
+
+            <!-- <p><a id="content-error"></a></p> -->
+        </div>
+        <div class="player-section">
+            <h2 class="with-bar">Players</h2>
+            <div>
+                <button class="default-button" id="add-everyone">Add everyone to Gama</button>
+                <button class="default-button" id="remove-everyone">Remove everyone from Gama</button>
+                <button class="default-button" id="clean-all">Clean all disconnected</button>
+            </div>
+            
+            <ul id="player-container"></ul>
+        </div>
+    </div>
+    <script src="./assets/Js/monitor.js"></script>
+    <!-- Add the file from server/views/assets/bootstrap/js/bootstrap.min.js  -->
+    <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>

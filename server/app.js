@@ -30,8 +30,13 @@ class App {
         //   res.sendFile('monitor.html', { root: 'views/' });
         // });
         this.app.get('/monitor', (req, res) => {
-            res.sendFile('monitor.html', { root: 'views/' });
+            res.sendFile('monitor-original.html', { root: 'views/' });
           });
+
+          this.app.get('/monitor-test', (req, res) => {
+            res.sendFile('monitor-original copy.html', { root: 'views/' });
+          });
+
         
         this.app.get('/settings', (req, res) => {
           res.sendFile('settings.html', { root: 'views/' });
