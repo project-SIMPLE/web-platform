@@ -2,13 +2,16 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gama Server Middleware</title>
     <link rel="stylesheet" type="text/css" href="monitor.css">
+    <!-- Add the file from server/views/assets/bootstrap/css/bootstrap.min.css  -->
+    <link rel="stylesheet" type="text/css" href="./assets/bootstrap/css/bootstrap.min.css">
+
 </head>
 
-<body>
+<body class="container-fluid">
     <header>
         <h1>Gama Server Middleware</h1>
     </header>
@@ -17,7 +20,7 @@
         <ul class="nav-list">
             <li class="nav-item"><a href="/monitor">Monitor</a></li>
             <li class="nav-item"><a href="/settings">Settings</a></li>
-            <li class="nav-item"><a href="/help">Help</a></li>
+            <li class="nav-item"><a href="/help">Help</a></li> 
 
         </ul>
     </nav>
@@ -52,10 +55,12 @@
                 <button class="default-button" id="clean-all">Clean all disconnected</button>
             </div>
             
-            <ul id="player-container-1"></ul>
+            <ul id="player-container"></ul>
         </div>
     </div>
-    <script src="monitor.js"></script>
+    <script src="./assets/Js/monitor.js"></script>
+    <!-- Add the file from server/views/assets/bootstrap/js/bootstrap.min.js  -->
+    <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

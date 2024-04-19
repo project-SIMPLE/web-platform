@@ -12,41 +12,99 @@
 </head>
 
 <body class="container-fluid">
-    <header>
-        <h1>Gama Server Middleware</h1>
-    </header>
 
-    <nav class="navbar">
-        <ul class="nav-list">
-            <li class="nav-item"><a href="/monitor">Monitor</a></li>
-            <li class="nav-item"><a href="/settings">Settings</a></li>
-            <li class="nav-item"><a href="/help">Help</a></li> 
+    <div class="row">
 
-        </ul>
-    </nav>
+        <!-- FILEPATH: /Users/m2l2/github.com/web-platform/server/views/game_page.html -->
+        <!-- This code snippet displays a video player with controls. The video source is set to "./assets/video/Multi-player GAMA.mov" and the video is set to preload and autoplay. -->
+        <div class="col-md-8">
+            <div class="">
+                <video class="img-fluid" preload autoplay>
+                    <source src="./assets/video/Multi-player GAMA.mov" type="video/quicktime">
+                </video>
+            </div>
 
-    <p id="connection-state" style="display:none;"></p>
+            <div class="">
+                <p id="connection-state" style="display:none;"></p>
+
+                    <!-- The span tag below should not be deleted for the moment  -->
+                <span class="default-button" id="try-connection" ></span>
+                <p id="gama-connection-state">&#x274C; Not Connected</p>
+                <p id="simulation-launched">&#x274C; The Simulation is Not Launched</p>
+
+                <div class="gama-section">                    
+                    <div id="simulation-controls" class="video-controls">
+                        <button type="button" class="btn btn-outline-primary" id="start-simulation">
+                            <img src="./assets/icons/play-solid.svg" width="20px" height="20px" alt="Start Icon">
+                            Launch
+                        </button>
+                        <button class="btn btn-outline-success" id="resume-simulation">
+                            Begin
+                        </button>
+                        <button class="btn btn-outline-secondary" id="pause-simulation">
+                            <img src="./assets/icons/stop-solid.svg" width="20px" height="20px" alt="Stop Icon">
+                            Pause
+                        </button>
+                        <button class="btn btn-outline-danger" id="stop-simulation">End Simulation</button>
+                        
+                        <p id="gama-loader"></p>
+                    </div>
+            
+                    <p><a id="content-error"></a></p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <!-- FILEPATH: /Users/m2l2/github.com/web-platform/server/views/game_page.html -->
+            <!--
+                This HTML code represents a table that displays player information and options for VR mode and projector.
+                The table has three columns: "Player", "VR MODE", and "PROJECTOR".
+                Each row represents a player and their corresponding options.
+                The "VR MODE" and "PROJECTOR" options are clickable buttons that redirect to different HTML pages.
+            -->
+            <table class="table text-center border border-1 border-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">Player</th>
+                    <th scope="col">
+                        <image src="./assets/icons/vr.png" width="50px" height="50px" alt="VR MODE">
+                        
+                    </th>
+                    <th scope="col">
+                        <image src="./assets/icons/projector.png" width="50px" height="50px" alt="PROJECTOR">
+                        
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Player 1</td>
+                    <td>
+                        <a href="./vr_mode.html">
+                            <button type="button" class="btn btn-outline-primary">VR MODE</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="./projector.html">
+                            <button type="button" class="btn btn-outline-primary">PROJECTOR</button>
+                        </a>
+                    </td>
+                  </tr>
+                 
+                </tbody>
+              </table>
+              
+        </div>
+
+</div>
+  
 
     <div class="sections">
         
-        <div class="gama-section">
-            <h2 class="with-bar">Gama Server</h2>
-            
-            <button class="default-button" id="try-connection">Try Connection</button>
-            <p id="gama-connection-state">&#x274C; Not Connected</p>
-            <p id="simulation-launched">&#x274C; The Simulation is Not Launched</p>
-            
-            <div id="simulation-controls">
-                <button class="default-button" id="start-simulation">Launch</button>
-                <button class="default-button" id="resume-simulation">Start/Resume</button>
-                <button class="default-button" id="pause-simulation">Pause</button>
-                <button class="default-button" id="stop-simulation">End</button>
-                
-                <p id="gama-loader"></p>
-            </div>
-
-            <p><a id="content-error"></a></p>
-        </div>
+      
         <div class="player-section">
             <h2 class="with-bar">Players</h2>
             <div>

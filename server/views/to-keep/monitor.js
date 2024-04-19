@@ -1,16 +1,16 @@
-const hostname = window.location.hostname;
-// const os = require('os');
-// const hostname = os.hostname();
+// const hostname = window.location.hostname;
+const os = require('os');
+const hostname = os.hostname();
 
 
 
 fetch('/getWsMonitorPort')
-      .then(response => response.json()) 
+      .then(response => response.json())
       .then(data => {
         createWebSocket(data.monitor_ws_port)
       });
 
-function createWebSocket(monitor_ws_port) { 
+function createWebSocket(monitor_ws_port) {
     const socket = new WebSocket('ws://'+hostname+':'+monitor_ws_port);
 
     socket.onopen = function() {
@@ -197,104 +197,6 @@ function createWebSocket(monitor_ws_port) {
                     socket.send(JSON.stringify({"type":"remove_player_headset","id":player_button_remove.id_player}))
                 })
             }
-
-            // Funcction to add player to the game automatically
-            // It is not working
-            function addPlayer(playerId) {
-    socket.send(JSON.stringify({"type":"add_player_headset","id":playerId}));
-}
-
-            //Second version of the player container
-            document.querySelector("#player-container").innerHTML = ""
-for (var element in json_state.player) {
-    const player_card = document.createElement('div')
-    player_card.classList.add("card", "border-success", "mb-3")
-    player_card.style.maxWidth = "18rem"
-
-    const player_header = document.createElement('div')
-    player_header.classList.add("card-header", "bg-transparent", "border-success")
-    player_card.appendChild(player_header)
-
-    const player_title = document.createElement('h5')
-    player_title.classList.add("card-title", "text-center")
-    player_title.innerHTML = "Player " + String(element)
-    player_header.appendChild(player_title)
-
-    const player_body = document.createElement('div')
-    player_body.classList.add("card-body")
-    player_card.appendChild(player_body)
-
-    const player_img = document.createElement('img')
-    player_img.src = "./assets/images/waiting-page.jpg"
-    player_img.classList.add("card-img-top")
-    player_img.alt = "Player " + String(element)
-    player_body.appendChild(player_img)
-
-    const player_button = document.createElement('button')
-    player_button.type = "button"
-    player_button.classList.add("btn", "btn-secondary", "btn-lg", "rounded-pill")
-    player_button.disabled = true
-    player_body.appendChild(player_button)
-
-
-    // ADd the player to the game automatically
-    if (json_state["player"][element]["connected"] && 
-    !json_state["player"][element]["in_game"] && 
-    !['RUNNING','PAUSED'].includes(json_state["gama"]["experiment_state"])) {
-        console.log('Game state:', json_state["gama"]["experiment_state"]);
-        console.log('Player state:', json_state["player"][element]["in_game"]);
-   socket.send(JSON.stringify({"type":"add_player_headset","id":element}))
-   
-    console.log('add player')
-
-}else{
-    console.log('do not add player')
-}
-
-
-    if (['RUNNING','PAUSED'].includes(json_state["gama"]["experiment_state"])) {
-        if (json_state["player"][element]["in_game"]) {
-            if (json_state["player"][element]["connected"]){
-                player_button.innerHTML = "Connected"
-                player_button.classList.remove("btn-secondary")
-                player_button.classList.add("btn-success")
-                player_button.disabled = false
-            }
-            else {
-                player_button.innerHTML = "Disconnected"
-                player_button.classList.remove("btn-success")
-                player_button.classList.add("btn-danger")
-            }
-        }
-        else {
-            if (json_state["player"][element]["connected"]){
-                player_button.innerHTML = "Waiting"
-                player_button.classList.remove("btn-danger")
-                player_button.classList.add("btn-success")
-            }
-            else {
-                player_button.innerHTML = "Disconnected"
-                player_button.classList.remove("btn-warning")
-                player_button.classList.add("btn-danger")
-            }
-        }
-    }
-    else {
-        if (json_state["player"][element]["connected"]){
-            player_button.innerHTML = "Ready to play"
-            // player_button.classList.remove("btn-danger")
-            player_button.classList.add("btn-success")
-        }
-        else {
-            player_button.innerHTML = "Disconnected"
-            player_button.classList.remove("btn-warning")
-            player_button.classList.add("btn-danger")
-        }
-    }
-
-    document.querySelector("#player-container").appendChild(player_card)
-}
-
         }
     }
 

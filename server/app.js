@@ -30,9 +30,11 @@ class App {
         //   res.sendFile('monitor.html', { root: 'views/' });
         // });
         this.app.get('/monitor', (req, res) => {
-            res.sendFile('monitor-original.html', { root: 'views/' });
+            res.sendFile('monitor-original.html', { root: 'views/' }); 
           });
-
+          this.app.get('/waiting', (req, res) => {
+            res.sendFile('waiting.html', { root: 'views/' }); 
+          });
           this.app.get('/monitor-test', (req, res) => {
             res.sendFile('monitor-original copy.html', { root: 'views/' });
           });
@@ -56,7 +58,7 @@ class App {
         });
 
         this.app.get('/getWsGamePort', (req, res) => {
-          res.json({ "player_ws_port" : controller.model.getJsonSettings().player_ws_port });
+          res.json({ "player_ws_port" : controller.model.getJsonSettings().player_ws_port }); 
         });
         
         this.app.get('/favicon.ico', (req, res) => {

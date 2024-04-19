@@ -11,17 +11,11 @@
 </head>
 <body>
     <div class="card-group">
-        <div class="card border-success mb-3" style="max-width: 18rem;">
-            <div class="card-header bg-transparent border-success">
-                <h5 class="card-title text-center">Player 1</h5>
-            </div>
-          <div class="card-body">
-            <img src="./assets/images/waiting-page.jpg" class="card-img-top" alt="...">
-            <button type="button" class="btn btn-secondary btn-lg rounded-pill" disabled>Connected</button>
-          </div>
+        <div id="player-container" style="max-width: 18rem;">
+            
         </div>
         
-        <div class="card border-success mb-3" style="max-width: 18rem;">
+        <!-- <div class="card border-success mb-3" style="max-width: 18rem;">
             <div class="card-header bg-transparent border-success">
                 <h5 class="card-title text-center">Player 2</h5>
             </div>
@@ -49,7 +43,7 @@
             <img src="./assets/images/waiting-page.jpg" class="card-img-top" alt="...">
             <button type="button" class="btn btn-secondary btn-lg rounded-pill" disabled>Connected</button>
           </div>
-        </div>
+        </div> -->
       </div>
 
         <div class="d-grid gap-2 col-6 mx-auto">
@@ -59,6 +53,41 @@
             </a>
             </button>
         </div>
+  
+
+        <div class="sections">
+        
+          <div class="gama-section">
+              <h2 class="with-bar">Gama Server</h2>
+              
+              <button class="default-button" id="try-connection">Try Connection</button>
+              <p id="gama-connection-state">&#x274C; Not Connected</p>
+              <p id="simulation-launched">&#x274C; The Simulation is Not Launched</p>
+              
+              <div id="simulation-controls">
+                  <button class="default-button" id="start-simulation" hidden></button>
+                  <button class="default-button" id="resume-simulation" hidden></button>
+                  <button class="default-button" id="pause-simulation" hidden></button>
+                  <button class="default-button" id="stop-simulation" hidden></button>
+                  
+                
+              </div>
+              <p id="gama-loader"></p>
+              <p><a id="content-error"></a></p>
+          </div>
+          <div class="player-section">
+              <h2 class="with-bar">Players</h2>
+              <div>
+                  <button class="default-button" id="add-everyone">Add Everyone</button>
+                  <button class="default-button" id="remove-everyone" hidden></button>
+                  <button class="default-button" id="clean-all" hidden></button>
+              </div>
+              
+              <ul ></ul>
+          </div>
+      </div>
+
 </body>
+<script src="./assets/Js/monitor.js"></script>
 <script src="./assets/bootstrap/js/bootstrap.min.js"></script>
 </html>
