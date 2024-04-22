@@ -25,12 +25,10 @@
             </div>
 
             <div class="">
-                <p id="connection-state" style="display:none;"></p>
+                
 
-                    <!-- The span tag below should not be deleted for the moment  -->
-                <span class="default-button" id="try-connection" ></span>
-                <p id="gama-connection-state">&#x274C; Not Connected</p>
-                <p id="simulation-launched">&#x274C; The Simulation is Not Launched</p>
+                <!-- TOAST MESSAGES -->
+                
 
                 <div class="gama-section">                    
                     <div id="simulation-controls" class="video-controls">
@@ -65,6 +63,32 @@
                 Each row represents a player and their corresponding options.
                 The "VR MODE" and "PROJECTOR" options are clickable buttons that redirect to different HTML pages.
             -->
+            <p id="connection-state" style="display:none;"></p>
+
+                    <!-- The span tag below should not be deleted for the moment  -->
+                    
+                <span class="default-button" id="try-connection" ></span>
+                <!-- Card for connected or not -->
+                <div class="row">
+                <div class="card" style="width: 18rem;">
+
+                    <div class="card-body">
+                      <h5 class="card-title" id="gama-connection-state">  &#x274C; Not Connected</h5>
+                       
+                    </div>
+                  </div>
+
+                  <!-- Card for SImulation state -->
+
+                  <div class="card mb-3" style="width: 18rem;">
+
+                    <div class="card-body">
+                      <h5 class="card-title" id="simulation-launched"> &#x274C; The Simulation is Not Launched</h5>
+                       
+                    </div>
+                  </div>
+                </div>
+
             <table class="table text-center border border-1 border-dark">
                 <thead>
                   <tr>
@@ -102,18 +126,20 @@
 </div>
   
 
+
+
     <div class="sections">
         
       
         <div class="player-section">
-            <h2 class="with-bar">Players</h2>
+            <!-- <h2 class="with-bar">Players</h2> -->
             <div>
-                <button class="default-button" id="add-everyone">Add everyone to Gama</button>
-                <button class="default-button" id="remove-everyone">Remove everyone from Gama</button>
-                <button class="default-button" id="clean-all">Clean all disconnected</button>
+                <button class="default-button" id="add-everyone" hidden>Add everyone to Gama</button>
+                <button class="default-button" id="remove-everyone" hidden>Remove everyone from Gama</button>
+                <button class="default-button" id="clean-all" hidden>Clean all disconnected</button>
             </div>
             
-            <ul id="player-container"></ul>
+            <!-- <ul id="player-container"></ul> -->
         </div>
     </div>
     <script src="./assets/Js/monitor.js"></script>
