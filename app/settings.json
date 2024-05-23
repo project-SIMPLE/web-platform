@@ -1,0 +1,14 @@
+{
+  "type": "json_settings",
+  "gama_ws_port": 8081,
+  "monitor_ws_port": 8001,
+  "player_ws_port": 8080,
+  "app_port": 8000,
+  "model_file_path": "/opt/gama-platform/configuration/org.eclipse.osgi/21/0/.cp/models/Modeling/Model Coupling/Flies and Mosquitos/Simple GUI comodel.gaml",
+  "experiment_name": "Complex",
+  "ip_address_gama_server": "localhost",
+  "player_web_interface": true,
+  "player_html_file": "simple_example.html",
+  "type_model_file_path": "absolute",
+  "verbose": true
+} 
