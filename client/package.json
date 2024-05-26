@@ -15,7 +15,8 @@
     "react-dom": "^18",
     "react-simple-wysiwyg": "^3.0.2",
     "react-use-websocket": "^4.8.1",
-    "reactstrap": "^9.2.2"
+    "reactstrap": "^9.2.2",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "@types/node": "^20",

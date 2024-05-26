@@ -13,7 +13,7 @@ ws.addEventListener("open", () =>{
   ws.send("How are you?");
 });
 ws.addEventListener('message', function (event) {
-    console.log(event.data);
+    console.table(event.data);
 });
 </script>
 </body>

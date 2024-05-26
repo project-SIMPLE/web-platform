@@ -15,9 +15,19 @@ ws.addEventListener('message', function (event) {
     // \x1b[32m%s\x1b[0mm -> Green color
     console.info('\x1b[32m%s\x1b[0m',"<------ Connected Successfully to Gama ------>");
  }
-    //console.table(gama_message.type);
+   //  console.table(gama_message.type);
+   //  console.table(gama_message.content);
+   //  console.table(gama_message.message.exp_id);
 
     // Send instructions to Gama according to the following structure : {"type":"SimulationStatus","content":"RUNNING","exp_id":"0"}
+    
+    
+    if(gama_message.type === "SimulationStatus" && gama_message.content === "NONE"){
+      ws.send('{"type":"SimulationStatus","content":"NOTREADY","exp_id":"0"}');
+      console.info('\x1b[35m%s\x1b[0m',"<------ Simulation is Launched  ------>");
+
+   }
+    
     function pauseSimulation(){
       if(gama_message.type === "SimulationStatus" && gama_message.content === "RUNNING"){
          ws.send('{"type":"SimulationStatus","content":"PAUSED","exp_id":"0"}');
