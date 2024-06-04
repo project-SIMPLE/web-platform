@@ -27,8 +27,9 @@ function updateSpecificSettings(monitor_ws_port) {
                 console.log(json_settings);
                 // Display JSON data
                 socket.send(JSON.stringify(json_settings))
+                
                 // Redirigez l'utilisateur vers la page /settings
-                window.location.href = "/monitor";
+                window.location.href = "/waiting"; 
             });
 
             const updateButton2 = document.getElementById("update-button-2");
@@ -42,7 +43,7 @@ function updateSpecificSettings(monitor_ws_port) {
                     
                 ))
                 // Redirigez l'utilisateur vers la page /settings
-                window.location.href = "/monitor";
+                window.location.href = "/waiting";
             });
         }
     }

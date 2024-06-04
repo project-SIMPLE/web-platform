@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gama Server Middleware</title>
+    <!-- <link rel="stylesheet" type="text/css" href="monitor.css"> -->
+</head>
+
+<body>
+
+    <p id="connection-state" style="display:none;"></p>
+
+    <div class="sections">
+        
+        <div class="gama-section">
+            <h2 class="with-bar">Waiting Room</h2>
+            
+            <button class="default-button" id="try-connection" hidden>Try Connection</button>
+            <p id="gama-connection-state" hidden>&#x274C; You are not Connected to Gama-platform</p>
+            <p id="simulation-launched" hidden>&#x274C; The game not started yet</p>
+            
+            <div id="simulation-controls">
+                <!-- <span class="default-button" id="start-simulation" hidden>Launch the game</span> -->
+                <button class="default-button" id="resume-simulation" hidden>Start/Resume</button>
+                <button class="default-button" id="pause-simulation" hidden>Pause</button>
+                <button class="default-button" id="stop-simulation" hidden>Quit the game</button>
+                
+                <p id="gama-loader"></p>
+            </div>
+
+            <p><a id="content-error"></a></p>
+        </div>
+        <div class="player-section">
+            <h2 class="with-bar">Players</h2>
+            <div>
+                <!-- <button class="default-button" id="add-everyone" hidden>Add all the players to the game</button> -->
+                <button class="default-button" id="remove-everyone" hidden>Remove all the players from the game</button>
+                <button class="default-button" id="clean-all" hidden>Clean all the disconnected</button>
+            </div>
+            
+            <ul id="player-container"></ul>
+        </div>
+        <button class="default-button" id="start-simulation" >Activate the game</button>
+        <button class="default-button" id="add-everyone">START</button>
+    </div>
+    <script  src="../monitor/monitor.js"></script>
+</body>
+
+</html>

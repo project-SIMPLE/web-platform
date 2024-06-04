@@ -10,7 +10,7 @@ fetch('/getWsMonitorPort')
 function createWebSocket(monitor_ws_port) {
     const socket = new WebSocket('ws://'+hostname+':'+monitor_ws_port);
 
-    socket.onopen = function() {
+    socket.onopen = function() {  
     };
 
     socket.onmessage = function(event){
@@ -26,7 +26,7 @@ function createWebSocket(monitor_ws_port) {
 
             //About experiment state
             if (!json_state.gama.connected) {
-                document.querySelector("#simulation-launched").innerHTML = "Please start Gama Server and then click on Try Connection..."
+                document.querySelector("#simulation-launched").innerHTML = "Please start Gama Server and reload the page"
                 document.querySelector("#simulation-launched").style = "color:red;"
                 document.querySelector("#start-simulation").disabled =  true
                 document.querySelector("#stop-simulation").disabled =  true
@@ -57,7 +57,8 @@ function createWebSocket(monitor_ws_port) {
                     document.querySelector('#remove-everyone').disabled = true
                 }
                 if (json_state.gama.experiment_state == 'PAUSED') {
-                    document.querySelector("#simulation-launched").innerHTML = "&#x231B;  Simulation paused"
+                    // &#x231B Icon;
+                    document.querySelector("#simulation-launched").innerHTML = "  Simulation paused"
                     document.querySelector("#simulation-launched").style = "color:orange;"
                     document.querySelector("#start-simulation").disabled =  true
                     document.querySelector("#stop-simulation").disabled =  false
@@ -67,7 +68,8 @@ function createWebSocket(monitor_ws_port) {
                     document.querySelector('#remove-everyone').disabled = false
                 }
                 if (json_state.gama.experiment_state == 'RUNNING') {
-                    document.querySelector("#simulation-launched").innerHTML = "&#10004; Simulation started"
+                    // &#10004; Icon;
+                    document.querySelector("#simulation-launched").innerHTML = " Simulation started"
                     document.querySelector("#simulation-launched").style = "color:green;"
                     document.querySelector("#start-simulation").disabled =  true
                     document.querySelector("#stop-simulation").disabled =  false
@@ -84,14 +86,14 @@ function createWebSocket(monitor_ws_port) {
                 const player_button_add_span = document.createElement('span')
                 const player_button_add = document.createElement('button')
                 player_button_add_span.appendChild(player_button_add)
-                player_button_add.innerHTML = "Add"
+                // player_button_add.innerHTML = "Add"
                 player_button_add.disabled = true
                 player_button_add.classList.add("button-player-add"); 
 
                 const player_button_remove_span = document.createElement('span')
                 const player_button_remove = document.createElement('button')
                 player_button_remove_span.appendChild(player_button_remove)
-                player_button_remove.innerHTML = "Remove"
+                // player_button_remove.innerHTML = "Remove"
                 player_button_remove.disabled = true
                 player_button_remove.classList.add("button-player-remove");
 
@@ -118,7 +120,7 @@ function createWebSocket(monitor_ws_port) {
                         player_button_remove.disabled = false
                         player_status.innerHTML = "Status: In game"
                         if (json_state["player"][element]["connected"]){
-                            player_icon_span.innerHTML = "&#10004;"
+                            // player_icon_span.innerHTML = "&#10004;"
                             player_icon_span.style = "color:green;"
                             player_id.style = "color:green;"
                             player_status.style = "color:green;"
@@ -126,7 +128,7 @@ function createWebSocket(monitor_ws_port) {
                             player_date.style = "color:green;"
                         }
                         else {
-                            player_icon_span.innerHTML = "&#x274C;"
+                            // player_icon_span.innerHTML = "&#x274C;"
                             player_id.style = "color:red;"
                             player_status.style = "color:red;"
                             player_date.innerHTML = "Last connection at: " + json_state["player"][element]["date_connection"] 
@@ -138,7 +140,7 @@ function createWebSocket(monitor_ws_port) {
                         player_button_remove.disabled = true
                         player_status.innerHTML = "Status: Not in game"
                         if (json_state["player"][element]["connected"]){
-                            player_icon_span.innerHTML = "&#x231B;"
+                            // player_icon_span.innerHTML = "&#x231B;"
                             player_id.style = "color:orange;"
                             player_status.style = "color:orange;"
                             player_date.innerHTML = "Connected at: " + json_state["player"][element]["date_connection"] 
@@ -157,7 +159,7 @@ function createWebSocket(monitor_ws_port) {
                     player_button_add.disabled = true
                     player_button_remove.disabled = true
                     if (json_state["player"][element]["connected"]){
-                        player_icon_span.innerHTML = "&#x231B;"
+                        // player_icon_span.innerHTML = "&#x231B;"
                         player_id.style = "color:orange;"
                         player_status.innerHTML = "Status: Not in game"
                         player_status.style = "color:orange;"
@@ -219,6 +221,7 @@ function createWebSocket(monitor_ws_port) {
 
     document.querySelector("#add-everyone").addEventListener('click', () => {
         socket.send(JSON.stringify({"type":"add_every_players"}))
+        window.location.href = "/monitor";
     })
 
     document.querySelector("#remove-everyone").addEventListener('click', () => {
@@ -233,8 +236,9 @@ function createWebSocket(monitor_ws_port) {
         if (event.wasClean) {
             console.log('The WebSocket connection with Gama Server was properly be closed');
         } else {
+            // &#x274C; Icon;
             console.error('The Websocket connection with Gama Server interruped suddenly');
-            document.querySelector("#connection-state").innerHTML = "&#x274C; The middleware disconnected ! Please refresh this page when the server came back to work"
+            document.querySelector("#connection-state").innerHTML = " The middleware disconnected ! Please refresh this page when the server came back to work"
             document.querySelector("#connection-state").style = "color:red;"
             document.querySelector(".sections").style = "display:none;"
         }
@@ -242,7 +246,8 @@ function createWebSocket(monitor_ws_port) {
     })
 
     socket.addEventListener('error', (error) => {
-        document.querySelector("#connection-state").innerHTML = "&#x274C; The middleware disconnected ! Please refresh this page when the server came back to work"
+        // &#x274C; Icon;
+        document.querySelector("#connection-state").innerHTML = " The middleware disconnected ! Please refresh this page when the server came back to work"
         document.querySelector("#connection-state").style = "color:red;"
         document.querySelector(".sections").style = "display:none;"
     });
