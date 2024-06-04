@@ -1,0 +1,14 @@
+{
+  "type": "json_settings",
+  "gama_ws_port": 8085,
+  "monitor_ws_port": 8001,
+  "player_ws_port": 8080,
+  "app_port": 8005,
+  "model_file_path": "/home/xmax/git/gaml.extension.unity/gaml.extension.unity/models/LinkToUnity/Models/Code Examples/User Interaction.gaml",
+  "experiment_name": "vr_xp",
+  "ip_address_gama_server": "localhost",
+  "player_web_interface": true,
+  "player_html_file": "simple_example.html",
+  "type_model_file_path": "absolute",
+  "verbose": false
+}
