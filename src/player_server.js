@@ -32,10 +32,9 @@ class PlayerServer {
         this.controller = controller;
         this.player_ws_port = controller.model.getJsonSettings().player_ws_port != undefined ? controller.model.getJsonSettings().player_ws_port : DEFAULT_PLAYER_WS_PORT;
         var player_ws_port = this.player_ws_port
-        this.player_socket = new WebSocket.Server({ port: 8002 });
+        this.player_socket = new WebSocket.Server({ port: this.player_ws_port });
         const player_server = this;
 
-        
         this.player_socket.on('error', (err) => {
             if (err.code === 'EADDRINUSE') {
                 console.log(`\x1b[31m-> The port ${player_ws_port} is already in use. Choose a different port in settings.json.\x1b[0m`);
@@ -50,7 +49,7 @@ class PlayerServer {
                 try {
                     const json_player = JSON.parse(message)
                     if (controller.model.getJsonSettings().verbose) {
-                        console.log("\x1b[32m-> Reception of this following message from the player " + getIdClient(ws));
+                        console.log("Reception of this following message from the player " + getIdClient(ws));
                         console.log(json_player);
                     }
                     if (json_player.type == "pong") {
@@ -77,7 +76,7 @@ class PlayerServer {
                                 //const id = json_player.id
                                 //setTimeout(() => {player_server.sendPing(id)}, 4000)
                             } 
-                            console.log('\x1b[34m-> Reconnection of the player with identifier: '+json_player.id+'Consider take the look at the players who have been disconnected or who did not succeed to connect');
+                            console.log('-> Reconnection of the player of id '+json_player.id);
                         }
                         //Sinon
                         else {
@@ -89,7 +88,7 @@ class PlayerServer {
                                 //const id = json_player.id
                                 //setTimeout(() => {player_server.sendPing(id)}, 4000)
                             }
-                            console.log('\x1b[1;34m-> Info : A new player is connected with identifier:'+json_player.id);
+                            console.log('-> New connection of the player of id '+json_player.id);
                         }
                     }
                     else if (json_player.type =="expression") {
@@ -129,13 +128,6 @@ class PlayerServer {
             });
         
         });
-    }
-
-    /**
-     * Returns the list of connected players
-     */
-    getConnectedPlayers() {
-        return player_socket_clients_id;
     }
 
     /**

@@ -1,30 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Gama Server Middleware Player</title>
-    <!-- Incluez la bibliothèque D3.js -->
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-   
+    <title>Player</title>
+    
 </head>
 
 <body>
-    <h1>Player Page</h1>
+    <h1>Player</h1>
 
         <p id="connection-state" style="color:green;font-weight: bold;"></p>
         <p id="authentification-state"></p>
         <p>
             <span>ID player: </span><span id="id-view"></span>
         </p>
-        
-        <!-- <h2>Current position:</h2>
-
-            <p>X coordinate : <span id="x-coordinate"></span></p>
-            <p>Y coordinate : <span id="y-coordinate"></span></p>
-
-            <svg id="graph-container" width="400" height="400"> -->
-                <!-- Ajoutez un rectangle pour le cadre -->
-                <!-- <rect id="graph-frame" width="400" height="400" fill="none" stroke="black" stroke-width="2"></rect>
-            </svg> -->
 
     <script>
 
@@ -48,13 +36,6 @@
                     console.log(data);
                     createWebSocket(data.player_ws_port)
         });
-
-        const graph_size = 400;
-        const svg = d3.select("#graph-container");
-        const graphFrame = d3.select("#graph-frame");
-
-        var x = 0;
-        var y = 0;
 
         function createWebSocket(player_ws_port) {
             const socket = new WebSocket('ws://'+hostname+':'+ player_ws_port);
@@ -82,8 +63,7 @@
                     
                     json_state = json;
                     const in_game = json_state.in_game;
-                    // For the players state, when the player is not connected to the game, it should render a red exception
-                    document.querySelector("#authentification-state").innerHTML = in_game ? "&#10004; Player is added to the game session" : "&#x274C; Player is not added to the game yet, please consider add him to the game session"
+                    document.querySelector("#authentification-state").innerHTML = in_game ? "&#10004; Authentified to Gama Server" : "&#x274C; Unauthentified to Gama Server, please wait"
                     document.querySelector("#authentification-state").style = in_game ? "color:green;" : "color:red;";
                 }
                 else if (json.type == "json_output") {

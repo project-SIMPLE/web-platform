@@ -39,9 +39,9 @@ class App {
           res.sendFile('setting2.html', { root: 'views/settings' });
         });
 
-        this.app.get('/waiting', (req, res) => {
-          res.sendFile('waiting.html', { root: 'views/monitor' });
-        });
+        // this.app.get('/waiting', (req, res) => {
+        //   res.sendFile('waiting.html', { root: 'views/monitor' });
+        // });
         
         this.app.get('/player', (req, res) => {
           if (this.controller.model.getJsonSettings().player_web_interface){
