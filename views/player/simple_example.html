@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gama Server Middleware Player</title>
+    <!-- Incluez la bibliothèque D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+   
+</head>
+
+<body>
+    <h1>Player Page</h1>
+
+        <p id="connection-state" style="color:green;font-weight: bold;"></p>
+        <p id="authentification-state"></p>
+        <p>
+            <span>ID player: </span><span id="id-view"></span>
+        </p>
+        
+        <!-- <h2>Current position:</h2>
+
+            <p>X coordinate : <span id="x-coordinate"></span></p>
+            <p>Y coordinate : <span id="y-coordinate"></span></p>
+
+            <svg id="graph-container" width="400" height="400"> -->
+                <!-- Ajoutez un rectangle pour le cadre -->
+                <!-- <rect id="graph-frame" width="400" height="400" fill="none" stroke="black" stroke-width="2"></rect>
+            </svg> -->
+
+    <script>
+
+        var json_state;
+        const id_unique = generateGuid();
+        document.querySelector("#id-view").innerHTML = id_unique;
+        const hostname = window.location.hostname;
+        var color;
+
+        function generateGuid() {
+            return 'xxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0;
+                const v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        fetch('/getWsGamePort')
+            .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    createWebSocket(data.player_ws_port)
+        });
+
+        const graph_size = 400;
+        const svg = d3.select("#graph-container");
+        const graphFrame = d3.select("#graph-frame");
+
+        var x = 0;
+        var y = 0;
+
+        function createWebSocket(player_ws_port) {
+            const socket = new WebSocket('ws://'+hostname+':'+ player_ws_port);
+
+            socket.onopen = function() {
+                console.log("Sending message:");
+                document.querySelector("#connection-state").innerHTML = "&#10004; Connected to central Server"
+                message = {type:"connection", id:id_unique, set_heartbeat: true}
+                console.log(message);
+                socket.send(JSON.stringify(message))
+            };
+
+            socket.onmessage = function(event) {
+
+                var json = JSON.parse(event.data)
+                console.log("Reception of message:");
+                console.log(json);
+                if (json.type == "ping") {
+                    console.log("Sending message:");
+                    console.log({type:"pong"});
+                    socket.send(JSON.stringify({type:"pong"}))
+                }
+                
+                if (json.type == "json_state") {
+                    
+                    json_state = json;
+                    const in_game = json_state.in_game;
+                    // For the players state, when the player is not connected to the game, it should render a red exception
+                    document.querySelector("#authentification-state").innerHTML = in_game ? "&#10004; Player is added to the game session" : "&#x274C; Player is not added to the game yet, please consider add him to the game session"
+                    document.querySelector("#authentification-state").style = in_game ? "color:green;" : "color:red;";
+                }
+                else if (json.type == "json_output") {
+                    const json_simulation = json;
+                    var position = json_simulation.contents.position
+                    var x = position.x;
+                    var y = position.y;
+                    document.querySelector("#x-coordinate").innerHTML = x;
+                    document.querySelector("#y-coordinate").innerHTML = y;
+
+                    svg.selectAll(".temp-circles").remove();
+
+                    color = "rgb("+ json_simulation.contents.color.red + ", "+ json_simulation.contents.color.green + ", "+ json_simulation.contents.color.blue + ")"
+                    svg.append("circle")
+                        .attr("cx", x*graph_size/100)
+                        .attr("class", "temp-circles")
+                        .attr("cy", y*graph_size/100)
+                        .attr("r", 8) // Rayon du cercle
+                        .style("fill", color); // Couleur de remplissage du cercle
+                }
+            };
+            
+            socket.addEventListener('close', (event) => {
+                document.querySelector("#connection-state").innerHTML = "&#x274C; The central server disconnected ! Please refresh this page when the server came back to work"
+                document.querySelector("#connection-state").style = "color:red;font-weight: bold;"
+                if (event.wasClean) {
+                    console.log('The WebSocket connection with Gama Server was properly be closed');
+                } else {
+                    console.error('The Websocket connection with Gama Server interruped suddenly');
+                }
+                console.log(`Closure id : ${event.code}, Reason : ${event.reason}`);
+
+            })
+
+            socket.addEventListener('error', (error) => {
+                document.querySelector("#connection-state").innerHTML = "&#x274C; The cetral server disconnected ! Please refresh this page when the server came back to work"
+                document.querySelector("#connection-state").style = "color:red;font-weight: bold;"
+            });
+        }
+    </script>
+</body>
+</html>

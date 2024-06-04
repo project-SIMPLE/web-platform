@@ -1,0 +1,11 @@
+.custom-carousel {
+    width: 600px;  /* Set to your desired width */
+    height: 400px; /* Set to your desired height */
+    overflow: hidden; /* Hide anything that goes outside the carousel */
+}
+
+.custom-carousel .carousel-item img {
+    width: 100%;  /* Make the image take up the full width of the carousel */
+    height: 100%; /* Make the image take up the full height of the carousel */
+    object-fit: cover; /* Scale the image to cover the carousel without distorting its aspect ratio */
+}
