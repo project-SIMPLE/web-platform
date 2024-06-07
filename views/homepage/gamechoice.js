@@ -22,7 +22,7 @@ function updateSpecificSettings(monitor_ws_port) {
             const updateButton1 = document.getElementById("update-button-1");
             updateButton1.addEventListener("click", function(event) {
                 // Update JSON data with predefined values for button 1
-                json_settings.model_file_path = "/home/xmax/git/gaml.extension.unity/gaml.extension.unity/models/LinkToUnity/Models/Code Examples/User Interaction.gaml";
+                json_settings.model_file_path = "/Users/patricktaillandier/Documents/GitHub/gaml.extension.unity/gaml.extension.unity/models/LinkToUnity/Models/Code Examples/User Interaction.gaml";
                 json_settings.experiment_name = "vr_xp";
                 console.log(json_settings);
                 // Display JSON data
@@ -35,8 +35,8 @@ function updateSpecificSettings(monitor_ws_port) {
             const updateButton2 = document.getElementById("update-button-2");
             updateButton2.addEventListener("click", function(event) {
                 // Update JSON data with predefined values for button 2
-                json_settings.model_file_path = "/opt/gama-platform/configuration/org.eclipse.osgi/231/0/.cp/models/LinkToUnity/Demo/Simple Player Game/DemoModelVR.gaml";
-                json_settings.experiment_name = "vr_xp";
+                json_settings.model_file_path = "/Users/patricktaillandier/Documents/GitHub/Rac-VR/RAC_GAMA/BHH-Waste/models/Experiments/UI_full_VR_Game.gaml";
+                json_settings.experiment_name = "VR_GAME";
                 console.log(json_settings);
                 // Display JSON data
                 socket.send(JSON.stringify(json_settings
