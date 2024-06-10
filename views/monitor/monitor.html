@@ -40,14 +40,15 @@
 
     <div class="row">
         <div class="col-md-8">
-            <div class="">
-                <video class="img-fluid"  preload autoplay>
+            <div class="border border-4 border-bottom border-black text-center">
+                <!-- <video class="img-fluid"  preload autoplay>
                     <source src="../public/assets/video/Multi Player Game.mp4" type="video/mp4">
-                </video>
+                </video> -->
+                <img src="../public/assets/images/video.png" class="img-fluid" alt="Responsive image">
             </div>
 
 
-            <div class="">
+            <div class="mt-2">
                 
                 <!-- TOAST MESSAGES -->
                 <div class="gama-section">                    
@@ -74,11 +75,12 @@
                         </a>
                     </p> -->
 
+                    <!-- Alert messages
                     <div class="alert alert-danger" role="alert">
                         <a id="content-error">
 
                         </a>
-                      </div>
+                      </div> -->
                 </div>
             </div>
         </div>
@@ -98,28 +100,45 @@
                 <!-- The span tag below should not be deleted for the moment  -->
                 
             <span class="default-button" id="try-connection" ></span>
-            <!-- Card for connected or not -->
             <div class="row">
-            <div class="card" style="width: 18rem;">
+            <!-- <div class="card col-sm-6 mb-3 mb-sm-0" style="width: 18rem;">
 
                 <div class="card-body">
-                  <h5 class="card-title" id="gama-connection-state">  &#x274C; Not Connected</h5>
+                  <h5 class="card-title" >  &#x274C;</h5>
                    
                 </div>
               </div>
-
-              <!-- Card for SImulation state -->
-
-              <div class="card mb-3" style="width: 18rem;">
+              <div class="card mb-3 col-sm-6 mb-3 mb-sm-0" style="width: 18rem;">
 
                 <div class="card-body">
                   <h5 class="card-title" id="simulation-launched"> &#x274C; The Simulation is Not Launched</h5>
                    
                 </div>
+              </div> -->
+
+
+              <!-- ------------ -->
+
+              <div class="col-sm-6 mb-3 mb-sm-0">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title" id="gama-connection-state">You are not Connected</h6>
+                  
+                  </div>
+                </div>
               </div>
+
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h6 class="card-title" id="simulation-launched">&#x274C6 The Game is Not Launched</h6>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
-        <table class="table text-center border border-1 border-dark">
+        <!-- <table class="table text-center border border-1 border-dark">
             <thead>
               <tr>
                 <th scope="col">Player</th>
@@ -137,8 +156,8 @@
               <tr>
                 <td>Player 1</td>
                 <td>
-                    <!-- If VR MODE IS CHOSEN, IT SHOULD GO IN SCRCPY PAGE WITHIN THE CHOSEN DEVICE AND SHOW THE LIVE STREAMING OF THIS DEVICE  -->
-                    <a href="./vr_mode.html">
+                   If VR MODE IS CHOSEN, IT SHOULD GO IN SCRCPY PAGE WITHIN THE CHOSEN DEVICE AND SHOW THE LIVE STREAMING OF THIS DEVICE  -->
+                    <!-- <a href="./vr_mode.html">
                         <button type="button" class="btn btn-outline-primary">VR MODE</button>
                     </a>
                 </td>
@@ -150,11 +169,16 @@
               </tr>
              
             </tbody>
-        </table>
+        </table> --> 
           
     </div>
 
 </div>  
+
+<div class="row">
+  
+ 
+</div>
 
     <!-- <p id="connection-state" style="display:none;"></p> -->
 
@@ -180,7 +204,7 @@
         </div>
     </div> -->
     <script src="monitor.js"></script>
-    <script src="../views/public/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../public/assets/bootstrap/js/bootstrap.min.js"></script>
 
 </body>
 

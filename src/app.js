@@ -36,7 +36,7 @@ class App {
         });
         
         this.app.get('/settings', (req, res) => {
-          res.sendFile('setting2.html', { root: 'views/settings' });
+          res.sendFile('settings.html', { root: 'views/settings' });
         });
 
         this.app.get('/waiting', (req, res) => {
