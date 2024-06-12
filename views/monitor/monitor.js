@@ -22,7 +22,7 @@ function createWebSocket(monitor_ws_port) {
             document.querySelector("#gama-connection-state").innerHTML = json_state["gama"]["connected"] ? "Connected": "Not connected"
             document.querySelector("#gama-connection-state").style = json_state["gama"]["connected"] ? "color:green;" : "color:red;"
             document.querySelector("#gama-loader").style.visibility = json_state["gama"]["loading"] ? "visible" : "hidden";
-            document.querySelector("#content-error").innerHTML = json_state.gama.content_error != "" ? "Error: " + json_state.gama.content_error.type + ", see log for more details.": ""
+            document.querySelector("#content-error").innerHTML = json_state.gama.content_error != "" ? "Error: " + json_state.gama.content_error.type + ", see log for more details. It should be related to the Gama model that has been launched. Check if it exists in your computer or it is a VR simulation.": ""
 
             //About experiment state
             if (!json_state.gama.connected) {
@@ -79,21 +79,35 @@ function createWebSocket(monitor_ws_port) {
                     document.querySelector('#remove-everyone').disabled = false
                 }
             }
+            // Create a row div
+            const row = document.createElement('div');
+            row.classList.add('row');
+
+            document.querySelector("#player-container").innerHTML = "";
+            document.querySelector("#player-container").appendChild(row); // Append the row to the player container
 
             // About VR    
-            document.querySelector("#player-container").innerHTML = ""
+            // document.querySelector("#player-container").innerHTML = ""
             for (var element in json_state.player) {
+                 // Create a Bootstrap card
+                 const card = document.createElement('div');
+                 card.classList.add('card', 'col-md-12', 'row', 'mb-3');
+ 
+                 // Create the card body
+                 const cardBody = document.createElement('div');
+                 cardBody.classList.add('card-body');
+
                 const player_button_add_span = document.createElement('span')
                 const player_button_add = document.createElement('button')
                 player_button_add_span.appendChild(player_button_add)
-                // player_button_add.innerHTML = "Add"
+                player_button_add.innerHTML = "Add"
                 player_button_add.disabled = true
                 player_button_add.classList.add("button-player-add"); 
 
                 const player_button_remove_span = document.createElement('span')
                 const player_button_remove = document.createElement('button')
                 player_button_remove_span.appendChild(player_button_remove)
-                // player_button_remove.innerHTML = "Remove"
+                player_button_remove.innerHTML = "Remove"
                 player_button_remove.disabled = true
                 player_button_remove.classList.add("button-player-remove");
 
@@ -113,6 +127,7 @@ function createWebSocket(monitor_ws_port) {
                 const player_status = document.createElement('li')
                 const player_date = document.createElement('li')
                 player_id.innerHTML = "ID: <b>" + String(element) + "</b>"
+                
                 if (['RUNNING','PAUSED'].includes(json_state["gama"]["experiment_state"])) {
                     
                     if (json_state["player"][element]["in_game"]) {
@@ -167,34 +182,41 @@ function createWebSocket(monitor_ws_port) {
                         player_date.style = "color:orange;"
                     }
                     else {
-                        player_icon_span.innerHTML = "&#x274C;"
+                        // player_icon_span.innerHTML = "&#x274C;"
                         player_id.style = "color:red;"
-                        player_status.innerHTML = "Status: Not in game"
+                        player_status.innerHTML = "Status: Player is Disconnected"
                         player_status.style = "color:red;"
                         player_date.innerHTML = "Last connection at: " + json_state["player"][element]["date_connection"] 
                         player_date.style = "color:red;"
                     }
                 }
+
+                // Append the card body to the card
+                card.appendChild(cardBody);
                 
-                document.querySelector("#player-container").appendChild(player_li)
-                player_li.appendChild(player_button_add_span)
-                player_li.appendChild(player_button_remove_span)
-                player_li.appendChild(player_icon_span)
-                player_li.appendChild(player_info_span)
-                player_info_span.appendChild(player_info_div)
-                player_info_div.appendChild(player_id)
-                player_info_div.appendChild(player_status)
-                player_info_div.appendChild(player_date)
+                    // Append the card to the player container
+                document.querySelector("#player-container").appendChild(card);
+                
+                // document.querySelector("#player-container").appendChild(player_li)
 
-                player_button_add.id_player = element
-                player_button_add.addEventListener('click', () => {
-                    socket.send(JSON.stringify({"type":"add_player_headset","id":player_button_add.id_player}))
-                })
+                cardBody.appendChild(player_button_add_span);
+    cardBody.appendChild(player_button_remove_span);
+    cardBody.appendChild(player_icon_span);
+    cardBody.appendChild(player_info_span);
+    player_info_span.appendChild(player_info_div);
+    player_info_div.appendChild(player_id);
+    player_info_div.appendChild(player_status);
+    player_info_div.appendChild(player_date);
 
-                player_button_remove.id_player = element
-                player_button_remove.addEventListener('click', () => {
-                    socket.send(JSON.stringify({"type":"remove_player_headset","id":player_button_remove.id_player}))
-                })
+    player_button_add.id_player = element;
+    player_button_add.addEventListener('click', () => {
+        socket.send(JSON.stringify({"type":"add_player_headset","id":player_button_add.id_player}));
+    });
+
+    player_button_remove.id_player = element;
+    player_button_remove.addEventListener('click', () => {
+        socket.send(JSON.stringify({"type":"remove_player_headset","id":player_button_remove.id_player}));
+    });
             }
         }
     }

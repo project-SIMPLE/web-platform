@@ -83,6 +83,14 @@ function createWebSocket(monitor_ws_port) {
             // About VR    
             document.querySelector("#player-container").innerHTML = ""
             for (var element in json_state.player) {
+                  // Create a Bootstrap card
+                const card = document.createElement('div');
+                card.classList.add('card', 'col-md-6', 'col-12', 'bg-primary');
+
+                // Create the card body
+                const cardBody = document.createElement('div');
+                cardBody.classList.add('card-body');
+
                 const player_button_add_span = document.createElement('span')
                 const player_button_add = document.createElement('button')
                 player_button_add_span.appendChild(player_button_add)
@@ -113,6 +121,8 @@ function createWebSocket(monitor_ws_port) {
                 const player_status = document.createElement('li')
                 const player_date = document.createElement('li')
                 player_id.innerHTML = "ID: <b>" + String(element) + "</b>"
+
+
                 if (['RUNNING','PAUSED'].includes(json_state["gama"]["experiment_state"])) {
                     
                     if (json_state["player"][element]["in_game"]) {
@@ -175,26 +185,33 @@ function createWebSocket(monitor_ws_port) {
                         player_date.style = "color:red;"
                     }
                 }
+
                 
-                document.querySelector("#player-container").appendChild(player_li)
-                player_li.appendChild(player_button_add_span)
-                player_li.appendChild(player_button_remove_span)
-                player_li.appendChild(player_icon_span)
-                player_li.appendChild(player_info_span)
-                player_info_span.appendChild(player_info_div)
-                player_info_div.appendChild(player_id)
-                player_info_div.appendChild(player_status)
-                player_info_div.appendChild(player_date)
+                // Append the card body to the card
+                card.appendChild(cardBody);
+                
+                    // Append the card to the player container
+                document.querySelector("#player-container").appendChild(card);
+                // document.querySelector("#player-container").appendChild(player_li)
+                // Append the player info elements to the card body
+    cardBody.appendChild(player_button_add_span);
+    cardBody.appendChild(player_button_remove_span);
+    cardBody.appendChild(player_icon_span);
+    cardBody.appendChild(player_info_span);
+    player_info_span.appendChild(player_info_div);
+    player_info_div.appendChild(player_id);
+    player_info_div.appendChild(player_status);
+    player_info_div.appendChild(player_date);
 
-                player_button_add.id_player = element
-                player_button_add.addEventListener('click', () => {
-                    socket.send(JSON.stringify({"type":"add_player_headset","id":player_button_add.id_player}))
-                })
+    player_button_add.id_player = element;
+    player_button_add.addEventListener('click', () => {
+        socket.send(JSON.stringify({"type":"add_player_headset","id":player_button_add.id_player}));
+    });
 
-                player_button_remove.id_player = element
-                player_button_remove.addEventListener('click', () => {
-                    socket.send(JSON.stringify({"type":"remove_player_headset","id":player_button_remove.id_player}))
-                })
+    player_button_remove.id_player = element;
+    player_button_remove.addEventListener('click', () => {
+        socket.send(JSON.stringify({"type":"remove_player_headset","id":player_button_remove.id_player}));
+    });
             }
         }
     }
